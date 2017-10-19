@@ -1,12 +1,25 @@
 package main
 
-class HashTable<K, V>(val sizeOfHashCode: Int){
+import java.lang.StringBuilder
 
-    inner class Pair<T, U>(val key: T, var value: U?)
+class HashTable<K, V>(private val sizeOfHashCode: Int){
+
+    inner class Pair<T, U>(val key: T, var value: U?){
+        override fun toString(): String {
+            return key.toString() + ", " + value.toString()
+        }
+    }
 
     private var size = 0
-    get() = size
     private val hashArray = ArrayList<ArrayList<Pair<K, V>>>(sizeOfHashCode)
+    init {
+        var i = 0
+        while (i < sizeOfHashCode) {
+            hashArray.add(ArrayList())
+            hashArray.add(ArrayList())
+            i++
+        }
+    }
 
     fun put(key: K, value: V?): V?{
         val lastValue: V?
@@ -15,7 +28,6 @@ class HashTable<K, V>(val sizeOfHashCode: Int){
             if (element.key == key){
                 lastValue = element.value
                 element.value = value
-                size++
                 return lastValue
             }
         }
@@ -46,7 +58,16 @@ class HashTable<K, V>(val sizeOfHashCode: Int){
         return null
     }
 
-    private fun getCell(key: K): ArrayList<Pair<K, V>>{
+    override fun toString(): String {
+        val sb = StringBuilder()
+        for ((index, element) in hashArray.withIndex()){
+            sb.appendln(index.toString() + ":")
+            element.forEach{ sb.appendln(it.toString())}
+        }
+        return sb.toString()
+    }
+
+    private fun getCell(key: K?): ArrayList<Pair<K, V>>{
         val hash = key!!.hashCode() % sizeOfHashCode
         return hashArray[hash]
     }
