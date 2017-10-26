@@ -11,15 +11,7 @@ class HashTable<K, V>(private val sizeOfHashCode: Int){
     }
 
     private var size = 0
-    private val hashArray = ArrayList<ArrayList<Pair<K, V>>>(sizeOfHashCode)
-    init {
-        var i = 0
-        while (i < sizeOfHashCode) {
-            hashArray.add(ArrayList())
-            hashArray.add(ArrayList())
-            i++
-        }
-    }
+    private val hashArray: Array<ArrayList<Pair<K, V>>> = Array(sizeOfHashCode, { ArrayList<Pair<K, V>>() })
 
     fun put(key: K, value: V?): V?{
         val lastValue: V?

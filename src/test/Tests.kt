@@ -12,11 +12,11 @@ class Tests {
         }
         println(hashTable.toString())
 
-        println("get:")
+        println("get(1,7):")
         println(hashTable.get(1))
         println(hashTable.get(7))
 
-        println("remove:")
+        println("remove(5,3):")
         hashTable.remove(5)
         hashTable.remove(3)
         println(hashTable.toString())
