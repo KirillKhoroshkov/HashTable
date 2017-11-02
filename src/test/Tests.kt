@@ -21,4 +21,19 @@ class Tests {
         hashTable.remove(3)
         println(hashTable.toString())
     }
+
+    @Test fun second(){
+        val hashTable = HashTable<Int, Int>(4)
+        for (element in 1..2){
+            hashTable.put(element,element*11)
+        }
+        println(hashTable.toString())
+        var removed = hashTable.remove(3)
+        println("removed: " + removed)
+        println(hashTable.toString())
+        removed = hashTable.remove(2)
+        println("removed: " + removed)
+        println(hashTable.toString())
+    }
+
 }

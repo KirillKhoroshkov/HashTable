@@ -40,11 +40,13 @@ class HashTable<K, V>(private val sizeOfHashCode: Int){
 
     fun remove(key: K): V?{
         val cell = getCell(key)
-        for (element in cell){
-            if (element.key == key){
-                cell.remove(element)
+        val iterator = cell.iterator()
+        while (iterator.hasNext()){
+            val next = iterator.next()
+            if (next.key == key){
+                iterator.remove()
                 size--
-                return element.value
+                return next.value
             }
         }
         return null
