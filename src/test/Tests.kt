@@ -1,12 +1,13 @@
 package test
 
-import main.HashTable
+import main.OpenAddressingHashTable
+import main.SeparateChainingHashTable
 import org.testng.annotations.Test
 
 class Tests {
 
-    @Test fun first(){
-        val hashTable = HashTable<Int, Int>(4)
+    @Test fun SeparateChaining1(){
+        val hashTable = SeparateChainingHashTable<Int, Int>(4)
         for (element in 0..10){
             hashTable.put(element,element)
         }
@@ -22,8 +23,8 @@ class Tests {
         println(hashTable.toString())
     }
 
-    @Test fun second(){
-        val hashTable = HashTable<Int, Int>(4)
+    @Test fun SeparateChaining2(){
+        val hashTable = SeparateChainingHashTable<Int, Int>(4)
         for (element in 1..2){
             hashTable.put(element,element*11)
         }
@@ -34,6 +35,20 @@ class Tests {
         removed = hashTable.remove(2)
         println("removed: " + removed)
         println(hashTable.toString())
+    }
+
+    @Test fun OpenAddressing1(){
+        val hashTable = OpenAddressingHashTable<Char, Char>(8)
+        hashTable.put('a', 'b')
+        println(hashTable.put('a', 'c'))
+        println(hashTable.get('a'))
+        hashTable.remove('a')
+        hashTable.put('b', 'b')
+        hashTable.put('g', 't')
+        hashTable.put('j', 't')
+        println(hashTable.remove('g'))
+        hashTable.put('n', 'k')
+        println(hashTable)
     }
 
 }

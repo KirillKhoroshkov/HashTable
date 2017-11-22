@@ -2,9 +2,9 @@ package main
 
 import java.lang.StringBuilder
 
-class HashTable<K, V>(private val sizeOfHashCode: Int){
+class SeparateChainingHashTable<K, V>(private val sizeOfHashCode: Int){
 
-    inner class Pair<T, U>(val key: T, var value: U?){
+    class Pair<T, U>(val key: T, var value: U?){
         override fun toString(): String {
             return key.toString() + ", " + value.toString()
         }
