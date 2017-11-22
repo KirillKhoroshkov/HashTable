@@ -71,7 +71,7 @@ class OpenAddressingHashTable<K, V>(private val sizeOfHashCode: Int) {
                     ": " +
                     if (element != null) {
                         "[" +
-                                element!!.key!!.hashCode() % sizeOfHashCode +
+                                element.key!!.hashCode() % sizeOfHashCode +
                                 "] " +
                                 element.toString() + "\n"
                     } else {
