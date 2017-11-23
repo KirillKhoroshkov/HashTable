@@ -16,7 +16,7 @@ class OpenAddressingHashTable<K, V>(private val sizeOfHashCode: Int) {
     }
 
     fun put(key: K, value: V): V?{
-        var index = key!!.hashCode() % sizeOfHashCode
+        var index = Math.abs(key!!.hashCode()) % sizeOfHashCode
         var oldValue: V? = null
         while (index < sizeOfHashCode && hashArray[index] != null && !hashArray[index]!!.isDeleted){
             if (hashArray[index]!!.key == key){
@@ -39,7 +39,7 @@ class OpenAddressingHashTable<K, V>(private val sizeOfHashCode: Int) {
     }
 
     fun get(key: K): V?{
-        var index = key!!.hashCode() % sizeOfHashCode
+        var index = Math.abs(key!!.hashCode()) % sizeOfHashCode
         var value: V? = null
         while(index < sizeOfHashCode && hashArray[index] != null){
             if (hashArray[index]!!.key == key && !hashArray[index]!!.isDeleted){
@@ -52,7 +52,7 @@ class OpenAddressingHashTable<K, V>(private val sizeOfHashCode: Int) {
     }
 
     fun remove(key: K): V?{
-        var index = key!!.hashCode() % sizeOfHashCode
+        var index = Math.abs(key!!.hashCode()) % sizeOfHashCode
         var value: V? = null
         while(index < sizeOfHashCode && hashArray[index] != null){
             if (hashArray[index]!!.key == key && !hashArray[index]!!.isDeleted){

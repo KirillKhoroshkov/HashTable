@@ -51,4 +51,24 @@ class Tests {
         println(hashTable)
     }
 
+    @Test fun OpenAddressing2(){
+        val hashTable = OpenAddressingHashTable<Int, String>(2)
+        hashTable.put(1, "111")
+        hashTable.put(2, "222")
+        /*hashTable.put(3, "333")
+        println(hashTable.put('a', 'c'))
+        println(hashTable.get('a'))
+        hashTable.remove('a')
+        hashTable.put('g', 't')
+        hashTable.put('j', 't')
+        println(hashTable.remove('g'))
+        hashTable.put('n', 'k')*/
+        println(hashTable)
+        hashTable.put(1, "555")
+        println(hashTable)
+        hashTable.remove(1)
+        println(hashTable)
+        hashTable.put(4, "444")
+        println(hashTable)
+    }
 }
