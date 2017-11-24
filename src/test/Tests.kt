@@ -70,5 +70,10 @@ class Tests {
         println(hashTable)
         hashTable.put(4, "444")
         println(hashTable)
+        try {
+            hashTable.put(5, "777")
+        } catch (ex: IndexOutOfBoundsException){
+            println("Массив переполнен")
+        }
     }
 }

@@ -15,25 +15,29 @@ class OpenAddressingHashTable<K, V>(private val sizeOfHashCode: Int) {
         }
     }
 
-    fun put(key: K, value: V): V?{
+    fun put(key: K, value: V): V? {
         var index = Math.abs(key!!.hashCode()) % sizeOfHashCode
         var oldValue: V? = null
-        while (index < sizeOfHashCode && hashArray[index] != null && !hashArray[index]!!.isDeleted){
-            if (hashArray[index]!!.key == key){
+        while (index < sizeOfHashCode && hashArray[index] != null && !hashArray[index]!!.isDeleted) {
+            if (hashArray[index]!!.key == key) {
                 oldValue = hashArray[index]!!.value
                 hashArray[index] = Cell(key, value)
                 return oldValue
             }
-            index++
+            index++////////////////////////////////////////////////////////////////////////////////////////////
         }
-        hashArray[index] = Cell(key, value)
-        index++
-        while(index < sizeOfHashCode && hashArray[index] != null){
-            if (hashArray[index]!!.key == key){
-                oldValue = hashArray[index]!!.value
-                hashArray[index]!!.isDeleted = true
-            }
+        if (index >= sizeOfHashCode) {
+            throw IndexOutOfBoundsException()
+        } else {
+            hashArray[index] = Cell(key, value)
             index++
+            while (index < sizeOfHashCode && hashArray[index] != null) {
+                if (hashArray[index]!!.key == key) {
+                    oldValue = hashArray[index]!!.value
+                    hashArray[index]!!.isDeleted = true
+                }
+                index++
+            }
         }
         return oldValue
     }
