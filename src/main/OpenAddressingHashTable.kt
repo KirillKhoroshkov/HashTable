@@ -24,7 +24,7 @@ class OpenAddressingHashTable<K, V>(private val sizeOfHashCode: Int) {
                 hashArray[index] = Cell(key, value)
                 return oldValue
             }
-            index++////////////////////////////////////////////////////////////////////////////////////////////
+            index++
         }
         if (index >= sizeOfHashCode) {
             throw IndexOutOfBoundsException()
